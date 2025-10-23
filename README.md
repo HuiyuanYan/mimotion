@@ -72,7 +72,7 @@
     "PWD": "password",
     "MIN_STEP": "18000",
     "MAX_STEP": "25000",
-    "PUSH_PLUS_TOKEN": "",
+    "GLOBAL_PUSH_PLUS_TOKEN": "",
     "PUSH_PLUS_HOUR": "",
     "PUSH_PLUS_MAX": "30",
     "SLEEP_GAP": "5",
