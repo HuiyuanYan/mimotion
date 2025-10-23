@@ -183,7 +183,9 @@ def push_individual_result(user, token, success, msg):
         return
     status = "成功" if success else "失败"
     content = f'<div>账号：{desensitize_user_name(user)}</div><div>状态：{status}</div><div>详情：{msg}</div>'
+    print(f"正在向用户{desensitize_user_name(user)}推送执行结果")
     push_plus(token, f"{format_now()} 刷步数结果", content)
+    print(f"向用户{desensitize_user_name(user)}推送执行结果完毕")
 
 
 def push_global_summary(exec_results, summary):
@@ -205,7 +207,9 @@ def push_global_summary(exec_results, summary):
             else:
                 html += f'<li><span>账号：{desensitize_user_name(exec_result["user"])}</span>刷步数失败，失败原因：{exec_result["msg"]}</li>'
         html += '</ul>'
+    print("正在推送全局执行结果")
     push_plus(GLOBAL_PUSH_PLUS_TOKEN, f"{format_now()} 刷步数通知", html)
+    print("全局结果推送完成")
 
 
 def run_single_account(total, idx, user_mi, passwd_mi, user_push_token=None):
