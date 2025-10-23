@@ -86,7 +86,8 @@
   | PWD             | 小米运动登录密码，仅支持小米运动账号对应的密码                                                                         |
   | MIN_STEP        | 最小步数                                                                                            |
   | MAX_STEP        | 最大步数，最大步数和最小步数随机范围随着时间线性增加，北京时间22点达到最大值                                                         |
-  | PUSH_PLUS_TOKEN | 推送加的个人token,申请地址[pushplus](https://www.pushplus.plus/push1.html)，工作流执行完成后推送每个账号的执行状态信息，如没有则不要填写 |
+  | USER_PUSH_PLUS_TOKEN | 可选，每个用户的pushplus token, 用`#`分隔，若某用户不需要单独推送，对应位置留空即可。推送加的个人token,申请地址[pushplus](https://www.pushplus.plus/push1.html)，工作流执行完成后推送每个账号的执行状态信息，如没有则不要填写 |
+  | GLOBAL_PUSH_PLUS_TOKEN | 可选，全局汇总推送 Token。若设置，则每次执行后推送整体结果        |
   | PUSH_PLUS_HOUR  | 限制只在某个整点进行pushplus的推送，值为整数，比如设置21，则只在北京时间21点XX分执行时才进行pushplus的消息推送。如不设置或值非数字则每次执行后都会进行推送        |
   | PUSH_PLUS_MAX   | 设置pushplus最大推送账号详情数，默认为30，超过30个账号将只推送概要信息：多少个成功多少个失败。因为数量太多会导致内容过长无法推送。具体最大值请自行调试               |
   | SLEEP_GAP       | 多账号执行间隔，单位秒，如果账号比较多可以设置的短一点，默认为5秒                                                               |
@@ -103,6 +104,8 @@
 {
   "USER": "13800138000#13800138001",
   "PWD": "abc123qwe#abcqwe2",
+  "USER_PUSH_PLUS_TOKEN": "token1#token2",
+  "GLOBAL_PUSH_PLUS_TOKEN": "global_token",
   "MIN_STEP": "18000",
   "MAX_STEP": "25000",
   "PUSH_PLUS_TOKEN": "",
@@ -175,6 +178,8 @@
 9. cron的执行根据github actions的资源进行排队，并不是百分百按指定的时间进行运行，请知悉。
 
 10. 新版本接口有限制，同ip登录过多账号可能会429，请自行测试。
+
+11. 推送机制已升级：支持每个账号单独推送（通过`USER_PUSH_PLUS_TOKEN`）和全局汇总推送（通过`GLOBAL_PUSH_PLUS_TOKEN`），请按需配置。
 
 ### 查看执行记录
 
